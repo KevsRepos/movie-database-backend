@@ -12,7 +12,7 @@ on a mysql database.
 
 # Some explanation
 
-Yeah I know, this looks weird, doesnt it? This is an experimental try of a new structur for backend development.
+Yeah I know, this looks weird, doesnt it? This is an experimental try of a new structure for backend development.
 On the top level is a `registerRoute` function, which registers in a more automatic style every given routes. To keep this
 as simple as a possible task, I only use the *POST* http Method. This way I can create a folder structure, which follows
 common frontend folder-structure patterns. Creating an API is kept as easy as possible, when following in a few simple rules.
