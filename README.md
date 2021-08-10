@@ -18,14 +18,19 @@ as simple as a possible task, I only use the *POST* http Method. This way I can 
 common frontend folder-structure patterns. Creating an API is kept as easy as possible, when following in a few simple rules.
 
 Instead of using http methods do define what exactly should happen, you use catch words on the end of a URI:
+
 *create* - is meant to create specific data in a database, comparable to the *POST* method.
+
 *read* - you would normally use *GET* for receaving data from a database. Here you must use the body to send parameters.
+
 *update* - updates data. Normal people use put/patch for this.
+
 *delete* - the comparable http method literally calls *DELETE*. Self explaining.
 
 additionally:
 
 *login* - to verify some sort of data and send back some sort of a validation token.
+
 *search* - to specifically make search requests, which mostly require way different database queries.
 
 This way you instantly know all the routes and what they do by just looking at the folder structure.
