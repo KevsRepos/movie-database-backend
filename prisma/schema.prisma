@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model categories {
+  categoryId String   @id @db.VarChar(50)
+  movies     movies[]
+}
+
+model favorites {
+  favoritesId Int      @id @default(autoincrement())
+  userId      String   @db.VarChar(36)
+  movieId     String   @db.VarChar(36)
+  movies      movies   @relation(fields: [movieId], references: [movieId])
+  userdata    userdata @relation(fields: [userId], references: [userId])
+
+  @@index([movieId], name: "movieId")
+  @@index([userId], name: "userId")
+}
+
+model movies {
+  movieId     String      @id @db.VarChar(36)
+  name        String      @unique @db.VarChar(100)
+  category    String      @db.VarChar(50)
+  releaseDate DateTime?   @db.Date
+  movieLength Int
+  description String      @db.LongText
+  categories  categories  @relation(fields: [category], references: [categoryId])
+  favorites   favorites[]
+
+  @@index([category], name: "category")
+}
+
+model userdata {
+  userId    String      @id @db.VarChar(36)
+  createdAt DateTime    @default(now()) @db.Date
+  email     String      @unique @db.VarChar(50)
+  name      String      @db.Text
+  surname   String      @db.Text
+  password  String      @db.Text
+  favorites favorites[]
+}

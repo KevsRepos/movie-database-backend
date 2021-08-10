@@ -1,0 +1,30 @@
+{
+  "/api/": {
+    "account/": {
+      "create": {
+      }
+    }
+  },
+  "httpStatusCode": {
+    "2xx": {
+      "200": "Anfrage bestanden."
+    },
+    "4xx": {
+      "400": "Anfrage abgebrochen, da Daten vom Client unbrauchbar sind",
+      "401": "Der Loginversuch vom Client schlug fehl",
+      "403": "Der Client muss für diese Anfrage eingeloggt sein",
+      "404": "Diesen Endpunkt gibt es nicht",
+      "405": "Es wurde ein andere Methode als POST verwendet",
+      "410": "Diesen Endpunkt gibt es nicht mehr und wird es nicht mehr geben",
+      "460": "Email-Adresse bereits vergeben",
+      "461": "Token validierung gab unerwünschtes Ergebnis zurück",
+      "462": "Gesuchter Eintrag existiert nicht in der Datenbank, weshalb das System nicht fortführen kann",
+      "463": "Es wurde versucht einen Eintrag zu erstellen, der UNIQUE, weshalb das System nicht fortführen kann",
+      "464": "Passwort stimmt nicht"
+    },
+    "5xx": {
+      "500": "Es ist ein unbekannter Fehler beim verarbeiten der Anfrage aufgetreten",
+      "505": "http Version stimmt nicht überein"
+    }
+  }
+}
