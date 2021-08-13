@@ -1,16 +1,17 @@
 const jwt = require("jsonwebtoken");
-const { validate } = require("../../lib/mainFunctions");
+const { Validate } = require("../../lib/mainFunctions");
 
 module.exports = async (req, res, prisma) => {
   const {userId} = req.body;
-  console.log(req.signedCookies.authToken);
-  validate.authToken(req.signedCookies.authToken).orDie(false);
+  var authToken = decodeURIComponent(req.signedCookies.authToken);
+  
+  new Validate().authToken(authToken).orDie(false);
 
-  const decoded = jwt.verify(req.signedCookies.authToken, process.env.TOKEN_SECRET);
+  const decoded = jwt.decode(authToken);
 
   const user = await prisma.userdata.findUnique({
     where: {
-      userId: userId ? userId : decoded._id 
+      userId: userId ? userId : decoded._id
     },
     select: {
       createdAt: true,
