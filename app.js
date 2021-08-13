@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const { PrismaClient, Prisma } = require('@prisma/client');
@@ -18,7 +19,7 @@ const corsOptions = {
   next();  
 }));
 
-app.use(cookieParser("secret"));
+app.use(cookieParser([process.env.TOKEN_SECRET]));
 app.use(express.json());
 app.use(cors(corsOptions));
 
@@ -41,8 +42,7 @@ const registerRoute = route => {
       const send = await router(req, res, prisma);
       res.status(200).send(send.data);
     } catch(err) {
-      console.log('Dieser ERROR: ');
-      console.log(err);
+      console.log(`ERROR: ${err.httpStatusCode}`);
       if(err.httpStatusCode) {
         res.status(err.httpStatusCode).send();
       }else {
